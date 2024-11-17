@@ -1,45 +1,32 @@
 package org.acme.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.NotNull;
 
 @Embeddable
 public class ChildId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
     @Column(name = "CMN_ID_1")
     private String commonId1;
 
-    @NotNull
     @Column(name = "CMN_ID_2")
     private String commonId2;
 
-    @NotNull
     @Column(name = "CMN_ID_3")
     private String commonId3;
 
-    @NotNull
     @Column(name = "CHD_ID_4")
     private Integer childId4;
 
-    /**
-     * Construtor padrão necessário pelo JPA.
-     */
     @Deprecated
     public ChildId() {
     }
 
-    /**
-     * Construtor completo para criação de chave composta.
-     */
-    public ChildId(@NotNull String commonId1, @NotNull String commonId2, @NotNull String commonId3,
-                   @NotNull Integer childId4) {
+    public ChildId(String commonId1, String commonId2, String commonId3, Integer childId4) {
         this.commonId1 = commonId1;
         this.commonId2 = commonId2;
         this.commonId3 = commonId3;
@@ -77,21 +64,48 @@ public class ChildId implements Serializable {
     public void setChildId4(Integer childId4) {
         this.childId4 = childId4;
     }
-
+  
     @Override
     public int hashCode() {
-        return Objects.hash(commonId1, commonId2, commonId3, childId4);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((commonId1 == null) ? 0 : commonId1.hashCode());
+        result = prime * result + ((commonId2 == null) ? 0 : commonId2.hashCode());
+        result = prime * result + ((commonId3 == null) ? 0 : commonId3.hashCode());
+        result = prime * result + ((childId4 == null) ? 0 : childId4.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
         ChildId other = (ChildId) obj;
-        return Objects.equals(commonId1, other.commonId1) &&
-               Objects.equals(commonId2, other.commonId2) &&
-               Objects.equals(commonId3, other.commonId3) &&
-               Objects.equals(childId4, other.childId4);
+        if (commonId1 == null) {
+            if (other.commonId1 != null)
+                return false;
+        } else if (!commonId1.equals(other.commonId1))
+            return false;
+        if (commonId2 == null) {
+            if (other.commonId2 != null)
+                return false;
+        } else if (!commonId2.equals(other.commonId2))
+            return false;
+        if (commonId3 == null) {
+            if (other.commonId3 != null)
+                return false;
+        } else if (!commonId3.equals(other.commonId3))
+            return false;
+        if (childId4 == null) {
+            if (other.childId4 != null)
+                return false;
+        } else if (!childId4.equals(other.childId4))
+            return false;
+        return true;
     }
 
     @Override
@@ -99,6 +113,5 @@ public class ChildId implements Serializable {
         return "ChildId [commonId1=" + commonId1 + ", commonId2=" + commonId2 + ", commonId3=" + commonId3
                 + ", childId4=" + childId4 + "]";
     }
-
     
 }

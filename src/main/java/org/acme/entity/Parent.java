@@ -11,9 +11,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -35,9 +33,9 @@ public class Parent implements Serializable {
 
     //@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "CMN_ID_1", referencedColumnName = "CMN_ID_1")
-    @JoinColumn(name = "CMN_ID_2", referencedColumnName = "CMN_ID_2")
-    @JoinColumn(name = "CMN_ID_3", referencedColumnName = "CMN_ID_3")
+    @JoinColumn(name = "CMN_ID_1", referencedColumnName = "CMN_ID_1", insertable = false, updatable = false)
+    @JoinColumn(name = "CMN_ID_2", referencedColumnName = "CMN_ID_2", insertable = false, updatable = false)
+    @JoinColumn(name = "CMN_ID_3", referencedColumnName = "CMN_ID_3", insertable = false, updatable = false)
     private List<Child> children = new ArrayList<>();
 
     public static Parent buildFromMessage(Message message) {

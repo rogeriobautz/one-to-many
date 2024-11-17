@@ -4,30 +4,19 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @Embeddable
 public class ParentId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @NotBlank
-    @Size(max = 50) // Tamanho conforme o banco de dados
     @Column(name = "CMN_ID_1")
     private String commonId1;
 
-    @NotNull
-    @NotBlank
-    @Size(max = 50)
     @Column(name = "CMN_ID_2")
     private String commonId2;
 
-    @NotNull
-    @NotBlank
-    @Size(max = 50)
     @Column(name = "CMN_ID_3")
     private String commonId3;
 
@@ -63,6 +52,8 @@ public class ParentId implements Serializable {
     public void setCommonId3(String commonId3) {
         this.commonId3 = commonId3;
     }
+
+
 
     @Override
     public int hashCode() {

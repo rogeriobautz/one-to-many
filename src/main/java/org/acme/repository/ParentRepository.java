@@ -14,14 +14,13 @@ import jakarta.transaction.Transactional;
 public class ParentRepository {
 
     @Inject
-    EntityManager em;
+    EntityManager entityManager;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void saveOrUpdate(Parent entity) {
-
         logger.info("Parent sendo persistida:  {}",entity);
-        em.merge(entity);
+        entityManager.merge(entity);
     }
 }
 
