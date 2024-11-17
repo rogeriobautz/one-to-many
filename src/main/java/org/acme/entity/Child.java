@@ -24,16 +24,16 @@ public class Child implements Serializable {
     @EmbeddedId
     private ChildId id;
 
-    @Column(name = "CHD_COL_1")
+    @Column(name = "CHILD_COLUMN_1")
     private String childColumn1;
 
-    @Column(name = "CHD_UDT")
+    @Column(name = "CHILD_UPDATE")
     private LocalDateTime   childUpdate;
 
     // @ManyToOne()
-    // @JoinColumn(name = "CMN_ID_1", referencedColumnName = "CMN_ID_1")
-    // @JoinColumn(name = "CMN_ID_2", referencedColumnName = "CMN_ID_2")
-    // @JoinColumn(name = "CMN_ID_3", referencedColumnName = "CMN_ID_3")
+    // @JoinColumn(name = "COMMON_ID_1", referencedColumnName = "COMMON_ID_1")
+    // @JoinColumn(name = "COMMON_ID_2", referencedColumnName = "COMMON_ID_2")
+    // @JoinColumn(name = "COMMON_ID_3", referencedColumnName = "COMMON_ID_3")
     // private Parent parent;
 
     public static List<Child> buildFromMessage(Message message) {

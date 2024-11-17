@@ -22,20 +22,20 @@ public class Parent implements Serializable {
     @EmbeddedId
     private ParentId id;
 
-    @Column(name = "PAR_COL_1")
+    @Column(name = "PARENT_COLUMN_1")
     private String parentColumn1;
 
-    @Column(name = "PAR_COL_2")
+    @Column(name = "PARENT_COLUMN_2")
     private String parentColumn2;
 
-    @Column(name = "PAR_UDT")
+    @Column(name = "PARENT_UPDATE")
     private LocalDateTime parentUpdate;
 
     //@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "CMN_ID_1", referencedColumnName = "CMN_ID_1", insertable = false, updatable = false)
-    @JoinColumn(name = "CMN_ID_2", referencedColumnName = "CMN_ID_2", insertable = false, updatable = false)
-    @JoinColumn(name = "CMN_ID_3", referencedColumnName = "CMN_ID_3", insertable = false, updatable = false)
+    @JoinColumn(name = "COMMON_ID_1", referencedColumnName = "COMMON_ID_1", insertable = false, updatable = false)
+    @JoinColumn(name = "COMMON_ID_2", referencedColumnName = "COMMON_ID_2", insertable = false, updatable = false)
+    @JoinColumn(name = "COMMON_ID_3", referencedColumnName = "COMMON_ID_3", insertable = false, updatable = false)
     private List<Child> children = new ArrayList<>();
 
     public static Parent buildFromMessage(Message message) {

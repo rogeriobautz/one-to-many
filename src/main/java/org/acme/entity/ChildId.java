@@ -10,16 +10,16 @@ public class ChildId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "CMN_ID_1")
+    @Column(name = "COMMON_ID_1")
     private String commonId1;
 
-    @Column(name = "CMN_ID_2")
+    @Column(name = "COMMON_ID_2")
     private String commonId2;
 
-    @Column(name = "CMN_ID_3")
+    @Column(name = "COMMON_ID_3")
     private String commonId3;
 
-    @Column(name = "CHD_ID_4")
+    @Column(name = "CHILD_ID_4")
     private Integer childId4;
 
     @Deprecated
