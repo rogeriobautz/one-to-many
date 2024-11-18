@@ -1,26 +1,29 @@
 package org.acme.entity;
 
+import jakarta.persistence.*;
+import org.acme.dto.Message;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.acme.dto.Message;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "PARENT", schema = "SCHEMA1")
+@IdClass(ParentId.class)
 public class Parent implements Serializable {
 
-    @EmbeddedId
-    private ParentId id;
+    @Id
+    @Column(name = "COMMON_ID_1")
+    private String commonId1;
+
+    @Id
+    @Column(name = "COMMON_ID_2")
+    private String commonId2;
+
+    @Id
+    @Column(name = "COMMON_ID_3")
+    private String commonId3;
 
     @Column(name = "PARENT_COLUMN_1")
     private String parentColumn1;
@@ -41,7 +44,9 @@ public class Parent implements Serializable {
     public static Parent buildFromMessage(Message message) {
 
         var parent = new Parent();
-        parent.setId(new ParentId(message.getId1(), message.getId2(), message.getId3()));
+        parent.setCommonId1(message.getId1());
+        parent.setCommonId2(message.getId2());
+        parent.setCommonId3(message.getId3());
         parent.setParentColumn1(message.getParent1());
         parent.setParentColumn2(message.getParent2());
         parent.setChildren(Child.buildFromMessage(message));
@@ -52,12 +57,28 @@ public class Parent implements Serializable {
 
     }
 
-    public ParentId getId() {
-        return id;
+    public String getCommonId1() {
+        return commonId1;
     }
 
-    public void setId(ParentId id) {
-        this.id = id;
+    public void setCommonId1(String commonId1) {
+        this.commonId1 = commonId1;
+    }
+
+    public String getCommonId2() {
+        return commonId2;
+    }
+
+    public void setCommonId2(String commonId2) {
+        this.commonId2 = commonId2;
+    }
+
+    public String getCommonId3() {
+        return commonId3;
+    }
+
+    public void setCommonId3(String commonId3) {
+        this.commonId3 = commonId3;
     }
 
     public String getParentColumn1() {
@@ -94,7 +115,7 @@ public class Parent implements Serializable {
 
     @Override
     public String toString() {
-        return "Parent [id=" + id + ", parentColumn1=" + parentColumn1 + ", parentColumn2=" + parentColumn2
+        return "Parent [commonId1=" + commonId1 + ", commonId2=" + commonId2 + ", commonId3=" + commonId3 + ", parentColumn1=" + parentColumn1 + ", parentColumn2=" + parentColumn2
                 + ", parentUpdate=" + parentUpdate + ", children=" + children + "]";
     }
 
